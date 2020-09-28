@@ -33,11 +33,11 @@ android {
 
     buildTypes {
         debug{
-            buildConfigField "String", "MARVEL_BASE_API", '"https://swapi.dev/api/"'
+            buildConfigField "String", "MARVEL_BASE_API", '"https://gateway.marvel.com:443/v1/public/"'
             buildConfigField "String", "MARVEL_API_KEY", '"94333addb791dc62dd9389be2dfc0b45"'
         }
         release {
-            buildConfigField "String", "MARVEL_BASE_API", '"https://swapi.dev/api/"'
+            buildConfigField "String", "MARVEL_BASE_API", '"https://gateway.marvel.com:443/v1/public/"'
             buildConfigField "String", "MARVEL_API_KEY", '"94333addb791dc62dd9389be2dfc0b45"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
