@@ -14,7 +14,7 @@ class Page<T>(
     @SerialName("count")
     val count: Int,
     @SerialName("results")
-    val results: List<Character> = listOf()
+    val results: List<T> = listOf()
 ) {
 
 }

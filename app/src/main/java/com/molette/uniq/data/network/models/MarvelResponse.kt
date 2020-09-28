@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 open class MarvelResponse<T>(
-    @SerialName("page")
+    @SerialName("data")
     val page: Page<T>
 ) {
 

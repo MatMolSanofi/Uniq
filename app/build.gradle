@@ -53,6 +53,7 @@ dependencies {
     def navigation_version = "2.3.0"
     def koin_version = "2.1.6"
     def paging_version = "3.0.0-alpha06"
+    def serialization_version = "0.20.0"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -73,7 +74,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.12'
 
     // Kotlinx Serialization
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.20.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-serialization-runtime:$serialization_version"
 
     //Room
     implementation "androidx.room:room-runtime:$room_version"
