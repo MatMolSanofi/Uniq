@@ -1,7 +1,7 @@
 package com.molette.uniq.data.network
 
-import com.molette.uniq.data.network.models.Character
-import com.molette.uniq.data.network.models.MarvelResponse
+import com.molette.uniq.data.network.models.CharacterRemote
+import com.molette.uniq.data.network.models.MarvelResponseRemote
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -18,5 +18,5 @@ interface MarvelAPI {
         @Query("$ORDER_BY_PARAM") orderBy: String = "name",
         @Query("$LIMIT_PARAM") limit: Int = 20,
         @Query("$OFFSET_PARAM") offset: Int = 0
-    ): MarvelResponse<Character>
+    ): MarvelResponseRemote<CharacterRemote>
 }

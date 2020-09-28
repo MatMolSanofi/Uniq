@@ -4,10 +4,9 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Thumbnail(
-    @SerialName("path")
-    val path: String,
-    @SerialName("extension")
-    val extension: String
+open class MarvelResponseRemote<T>(
+    @SerialName("data")
+    val page: PageRemote<T>
 ) {
+
 }

@@ -4,7 +4,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-class Page<T>(
+class PageRemote<T>(
     @SerialName("offset")
     val offset: Int,
     @SerialName("limit")
