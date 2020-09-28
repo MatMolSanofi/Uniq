@@ -7,6 +7,7 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.molette.uniq.data.db.dao.CharacterDao
+import com.molette.uniq.data.db.dao.CharacterRemoteKeyDao
 import com.molette.uniq.data.db.models.CharacterDb
 import com.molette.uniq.data.db.models.CharacterRemoteKeyDb
 import kotlinx.serialization.ImplicitReflectionSerializer
@@ -17,7 +18,7 @@ import kotlinx.serialization.ImplicitReflectionSerializer
 abstract class AppDatabase: RoomDatabase() {
 
     abstract val characterDao: CharacterDao
-    abstract val characterRemoteKeyDao: CharacterRemoteKeyDb
+    abstract val characterRemoteKeyDao: CharacterRemoteKeyDao
 
     companion object{
         private const val DB_NAME = "uniq_db"
