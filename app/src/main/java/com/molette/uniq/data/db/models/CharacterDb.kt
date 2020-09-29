@@ -6,8 +6,9 @@ import com.molette.uniq.presentation.models.Character
 
 @Entity(tableName = "characters")
 data class CharacterDb(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val id: Long,
+    val characterId: Long,
     val name: String,
     val thumbnail: String,
     val extension: String
@@ -15,5 +16,5 @@ data class CharacterDb(
 }
 
 fun CharacterDb.toCharacter(): Character{
-    return Character(id, name, thumbnail, extension)
+    return Character(id, characterId, name, thumbnail, extension)
 }

@@ -17,5 +17,5 @@ class CharacterRemote(
 }
 
 fun CharacterRemote.toCharacterDb(): CharacterDb {
-    return CharacterDb(id, name, thumbnail.path, thumbnail.extension)
+    return CharacterDb(id = 0, characterId = id, name = name, thumbnail = thumbnail.path, extension = thumbnail.extension)
 }

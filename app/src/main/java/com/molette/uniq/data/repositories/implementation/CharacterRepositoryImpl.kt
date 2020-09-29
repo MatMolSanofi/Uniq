@@ -15,7 +15,7 @@ class CharacterRepositoryImpl(
     private val remoteDataSource: MarvelAPI
 ): CharacterRepository {
 
-    val pagingSourceFactory =  { localDataSource.characterDao.getAll()}
+    private val pagingSourceFactory =  { localDataSource.characterDao.getAll()}
 
     override fun getCharactersPaged(): Flow<PagingData<CharacterDb>> {
         return Pager(

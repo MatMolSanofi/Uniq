@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlinx-serialization'
+apply plugin: "androidx.navigation.safeargs.kotlin"
 
 android {
     compileSdkVersion 29
@@ -35,10 +36,12 @@ android {
         debug{
             buildConfigField "String", "MARVEL_BASE_API", '"https://gateway.marvel.com:443/v1/public/"'
             buildConfigField "String", "MARVEL_API_KEY", '"94333addb791dc62dd9389be2dfc0b45"'
+            buildConfigField "String", "MARVEL_PRIVATE_KEY", '"db9ee6c8a4e313204848dcc2e2d371af318b3242"'
         }
         release {
             buildConfigField "String", "MARVEL_BASE_API", '"https://gateway.marvel.com:443/v1/public/"'
             buildConfigField "String", "MARVEL_API_KEY", '"94333addb791dc62dd9389be2dfc0b45"'
+            buildConfigField "String", "MARVEL_PRIVATE_KEY", '"db9ee6c8a4e313204848dcc2e2d371af318b3242"'
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -54,6 +57,7 @@ dependencies {
     def koin_version = "2.1.6"
     def paging_version = "3.0.0-alpha06"
     def serialization_version = "0.20.0"
+    def glide_version = "4.9.0"
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
@@ -104,6 +108,10 @@ dependencies {
 
     // Paging
     implementation "androidx.paging:paging-runtime:$paging_version"
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$glide_version"
+    kapt "com.github.bumptech.glide:compiler:$glide_version"
 
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
 

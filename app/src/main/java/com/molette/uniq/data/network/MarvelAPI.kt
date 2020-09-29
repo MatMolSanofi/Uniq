@@ -13,7 +13,7 @@ interface MarvelAPI {
         private const val ORDER_BY_PARAM = "orderBy"
     }
 
-    @GET("characters/")
+    @GET("characters")
     suspend fun getCharacters(
         @Query("$ORDER_BY_PARAM") orderBy: String = "name",
         @Query("$LIMIT_PARAM") limit: Int = 20,

@@ -5,8 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
 import com.molette.uniq.R
+import com.molette.uniq.databinding.CharacterCellBinding
+import com.molette.uniq.databinding.FragmentHomeBinding
+import com.molette.uniq.presentation.home.adapters.CharacterAdapter
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -16,20 +20,27 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
  */
 class HomeFragment : Fragment() {
 
-    val homeViewModel by viewModel<HomeViewModel>()
+    private val homeViewModel by viewModel<HomeViewModel>()
+    private lateinit var adapter: CharacterAdapter
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        adapter = CharacterAdapter()
         loadCharacters()
+        initLoad()
     }
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        binding.characterRV.adapter = adapter
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -39,8 +50,12 @@ class HomeFragment : Fragment() {
     private fun loadCharacters(){
         lifecycleScope.launch {
             homeViewModel.getCharactersPaged()?.collectLatest {
-                //adapter.submitData(it)
+                adapter.submitData(it)
             }
         }
+    }
+
+    private fun initLoad(){
+
     }
 }
