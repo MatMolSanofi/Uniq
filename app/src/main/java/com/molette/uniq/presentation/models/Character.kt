@@ -4,6 +4,7 @@ data class Character(
     val id: Long,
     val characterId: Long,
     val name: String,
+    val description: String,
     val thumbnail: String,
     val extension: String
 ) {

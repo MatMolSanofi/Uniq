@@ -26,4 +26,8 @@ class CharacterRepositoryImpl(
             pagingSourceFactory = pagingSourceFactory
         ).flow
     }
+
+    override fun getCharacter(characterId: Long): Flow<CharacterDb> {
+        return localDataSource.characterDao.getCharacter(characterId)
+    }
 }

@@ -2,8 +2,10 @@ package com.molette.uniq.presentation.home.adapters
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.NavController
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -12,9 +14,10 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.molette.uniq.R
 import com.molette.uniq.databinding.CharacterCellBinding
+import com.molette.uniq.presentation.home.HomeFragmentDirections
 import com.molette.uniq.presentation.models.Character
 
-class CharacterAdapter():
+class CharacterAdapter(private val navController: NavController):
     PagingDataAdapter<Character, CharacterViewHolder>(CHARACTER_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
@@ -22,7 +25,7 @@ class CharacterAdapter():
         val inflater: LayoutInflater = LayoutInflater.from(parent.context)
         val binding = DataBindingUtil.inflate<CharacterCellBinding>(inflater, R.layout.character_cell, parent,  false)
 
-        return CharacterViewHolder(binding, parent.context)
+        return CharacterViewHolder(binding, navController, parent.context)
     }
 
     override fun onBindViewHolder(holder: CharacterViewHolder, position: Int) {
@@ -44,7 +47,7 @@ class CharacterAdapter():
     }
 }
 
-class CharacterViewHolder(val binding: CharacterCellBinding, val context: Context): RecyclerView.ViewHolder(binding.root){
+class CharacterViewHolder(val binding: CharacterCellBinding, val navController: NavController, val context: Context): RecyclerView.ViewHolder(binding.root){
 
     fun bind(character: Character){
         binding.character = character
@@ -53,5 +56,12 @@ class CharacterViewHolder(val binding: CharacterCellBinding, val context: Contex
             .diskCacheStrategy(DiskCacheStrategy.AUTOMATIC)
             .transition(DrawableTransitionOptions.withCrossFade())
             .into(binding.characterThumbnail)
+
+        binding.root.setOnClickListener(object : View.OnClickListener{
+            override fun onClick(v: View?){
+                val navDirections = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(characterId = character.characterId)
+                navController.navigate(navDirections)
+            }
+        })
     }
 }

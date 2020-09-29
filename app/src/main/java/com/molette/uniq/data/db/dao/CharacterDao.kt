@@ -13,7 +13,7 @@ interface CharacterDao: BaseDao<CharacterDb> {
     ("SELECT * FROM characters")
     fun getAll(): PagingSource<Int, CharacterDb>
 
-    @Query("SELECT * FROM characters WHERE id = :characterId")
+    @Query("SELECT * FROM characters WHERE characterId = :characterId")
     fun getCharacter(characterId: Long): Flow<CharacterDb>
 
     @Query("DELETE FROM characters")

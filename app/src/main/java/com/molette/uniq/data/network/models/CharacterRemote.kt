@@ -10,6 +10,8 @@ class CharacterRemote(
     val id: Long,
     @SerialName("name")
     val name: String,
+    @SerialName("description")
+    val description: String,
     @SerialName("thumbnail")
     val thumbnail: ThumbnailRemote
 ) {
@@ -17,5 +19,5 @@ class CharacterRemote(
 }
 
 fun CharacterRemote.toCharacterDb(): CharacterDb {
-    return CharacterDb(id = 0, characterId = id, name = name, thumbnail = thumbnail.path, extension = thumbnail.extension)
+    return CharacterDb(id = 0, characterId = id, name = name, description = description, thumbnail = thumbnail.path, extension = thumbnail.extension)
 }

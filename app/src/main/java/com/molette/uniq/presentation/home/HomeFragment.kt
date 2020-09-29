@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.molette.uniq.R
 import com.molette.uniq.databinding.CharacterCellBinding
 import com.molette.uniq.databinding.FragmentHomeBinding
@@ -26,10 +27,6 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        adapter = CharacterAdapter()
-        loadCharacters()
-        initLoad()
     }
 
     override fun onCreateView(
@@ -38,6 +35,7 @@ class HomeFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
+        adapter = CharacterAdapter(findNavController())
         binding.characterRV.adapter = adapter
 
         return binding.root
@@ -45,6 +43,7 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loadCharacters()
     }
 
     private fun loadCharacters(){
@@ -53,9 +52,5 @@ class HomeFragment : Fragment() {
                 adapter.submitData(it)
             }
         }
-    }
-
-    private fun initLoad(){
-
     }
 }

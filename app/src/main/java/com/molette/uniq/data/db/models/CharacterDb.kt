@@ -10,11 +10,12 @@ data class CharacterDb(
     val id: Long,
     val characterId: Long,
     val name: String,
+    val description: String,
     val thumbnail: String,
     val extension: String
 ) {
 }
 
 fun CharacterDb.toCharacter(): Character{
-    return Character(id, characterId, name, thumbnail, extension)
+    return Character(id, characterId, name, description, thumbnail, extension)
 }
