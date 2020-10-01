@@ -8,17 +8,20 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import com.molette.uniq.data.db.dao.CharacterDao
 import com.molette.uniq.data.db.dao.CharacterRemoteKeyDao
+import com.molette.uniq.data.db.dao.ContactDao
 import com.molette.uniq.data.db.models.CharacterDb
 import com.molette.uniq.data.db.models.CharacterRemoteKeyDb
+import com.molette.uniq.data.db.models.ContactDb
 import kotlinx.serialization.ImplicitReflectionSerializer
 
 @OptIn(ImplicitReflectionSerializer::class)
-@Database(entities = [CharacterDb::class, CharacterRemoteKeyDb::class],
+@Database(entities = [CharacterDb::class, CharacterRemoteKeyDb::class, ContactDb::class],
     version = 1, exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
 
     abstract val characterDao: CharacterDao
     abstract val characterRemoteKeyDao: CharacterRemoteKeyDao
+    abstract val contactDao: ContactDao
 
     companion object{
         private const val DB_NAME = "uniq_db"
