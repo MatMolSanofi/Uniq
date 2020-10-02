@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.Flow
 interface CharacterDao: BaseDao<CharacterDb> {
 
     @Query
-    ("SELECT * FROM characters ORDER BY name")
+    ("SELECT * FROM characters")
     fun getAll(): PagingSource<Int, CharacterDb>
 
     @Query("SELECT * FROM characters WHERE characterId = :characterId")

@@ -27,7 +27,8 @@ class HomeViewModel(
     var contacts: LiveData<List<Contact>> = getContactsUseCase.getContacts().map { it.map { it.toContact() } }.asLiveData()
 
     fun getCharactersPaged(): Flow<PagingData<Character>>? {
-        characters = getCharactersUseCase.getCharacters().map { items -> items.map { it.toCharacter() } }.cachedIn(viewModelScope)
+        var newCharactersPaged = getCharactersUseCase.getCharacters().cachedIn(viewModelScope)
+        characters = newCharactersPaged.map { items -> items.map { it.toCharacter() } }
         return characters
     }
 

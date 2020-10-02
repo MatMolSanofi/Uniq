@@ -41,7 +41,7 @@ class DetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        detailsViewModel.characterId.value = args.characterId
         detailsViewModel.character.observe(viewLifecycleOwner, Observer {
             binding.character = it
             Glide.with(requireContext())
@@ -50,10 +50,5 @@ class DetailsFragment : Fragment() {
                 .transition(DrawableTransitionOptions.withCrossFade())
                 .into(binding.detailsImage)
         })
-    }
-
-    override fun onResume() {
-        super.onResume()
-        detailsViewModel.characterId.value = args.characterId
     }
 }

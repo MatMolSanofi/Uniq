@@ -12,11 +12,13 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.ExperimentalPagingApi
 import androidx.recyclerview.widget.ConcatAdapter
 import com.molette.uniq.R
 import com.molette.uniq.databinding.FragmentHomeBinding
 import com.molette.uniq.presentation.home.adapters.CharacterAdapter
 import com.molette.uniq.presentation.home.adapters.ContactAdapter
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -34,6 +36,9 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
+        characterAdapter = CharacterAdapter(findNavController())
+        contactAdapter = ContactAdapter(findNavController())
+
         askReadContactsPermission()
     }
 
@@ -43,8 +48,6 @@ class HomeFragment : Fragment() {
     ): View? {
 
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        characterAdapter = CharacterAdapter(findNavController())
-        contactAdapter = ContactAdapter(findNavController())
         binding.characterRV.adapter = ConcatAdapter(contactAdapter, characterAdapter)
 
         return binding.root
