@@ -1,4 +1,4 @@
-package com.molette.uniq.UITest
+package com.molette.uniq.ui
 
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
